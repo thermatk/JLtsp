@@ -81,6 +81,8 @@ public class Tour {
 		}
 
 	}
+	
+	
 
 	void insertSmallest(Point p) {
 
