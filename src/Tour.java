@@ -50,7 +50,7 @@ public class Tour {
 		int i = 1;
 		while (!(temp == first) || i==1) {
 			temp.p.draw();
-			
+			temp.p.drawTo(temp.next.p);
 			i++;
 			temp=temp.next;
 
@@ -59,10 +59,26 @@ public class Tour {
 	}
 
 	double distance() {
+		Node temp = first;
+		int i = 1;
+		int distance = 0;
+		while (!(temp == first) || i==1) {
+			distance += temp.p.distanceTo(temp.next.p);
+			i++;
+			temp=temp.next;
+
+		}
 
 	}
 
 	int size() {
+		Node temp = first;
+		int i = 1;
+		while (!(temp == first) || i==1) {
+			i++;
+			temp=temp.next;
+			StdOut.print(i);
+		}
 
 	}
 
