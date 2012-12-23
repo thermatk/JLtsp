@@ -16,4 +16,5 @@ public class Tour {
 		// TODO Auto-generated method stub
 
 	}
+}
 
