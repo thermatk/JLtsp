@@ -3,7 +3,7 @@
  */
 
 /**
- * @author BigBOSS
+ * @author thermatk
  *
  */
 public class Tour {
