@@ -35,7 +35,7 @@ public class Tour {
 		Node temp = first;
 		int i = 1;
 		while (!(temp == first) || i==1) {
-			//TODO  ‚ынести наружу
+			// TODO пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			StdOut.println("Point " + i + temp.p);
 			i++;
 			temp=temp.next;
@@ -69,7 +69,7 @@ public class Tour {
 			temp=temp.next;
 
 		}
-return distance;
+		return distance;
 	}
 
 	int size() {
@@ -80,7 +80,7 @@ return distance;
 			temp=temp.next;
 			
 		}
-return i;
+		return i;
 	}
 	
 	
