@@ -4,6 +4,7 @@
 
 /**
  * @author thermatk
+ * @author remkvadriga
  *
  */
 public class Tour {
@@ -16,4 +17,3 @@ public class Tour {
 
 	}
 
-}
