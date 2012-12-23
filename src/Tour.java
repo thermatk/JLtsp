@@ -75,6 +75,7 @@ public class Tour {
 	int size() {
 		Node temp = first;
 		int i = 1;
+		// TODO size-1
 		while (!(temp == first) || i==1) {
 			i++;
 			temp=temp.next;
