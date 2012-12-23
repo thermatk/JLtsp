@@ -69,7 +69,7 @@ public class Tour {
 			temp=temp.next;
 
 		}
-
+return distance;
 	}
 
 	int size() {
@@ -78,9 +78,9 @@ public class Tour {
 		while (!(temp == first) || i==1) {
 			i++;
 			temp=temp.next;
-			StdOut.print(i);
+			
 		}
-
+return i;
 	}
 	
 	
