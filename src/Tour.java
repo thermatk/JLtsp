@@ -45,8 +45,8 @@ public class Tour {
 	}
 
 	void draw() {
-		StdDraw.setXscale(0, 600);
-	      StdDraw.setYscale(0, 600);
+	//	StdDraw.setXscale(0, 600);
+	  //    StdDraw.setYscale(0, 600);
 		Node temp = first;
 		int i = 1;
 		while (!(temp == first) || i==1) {
@@ -85,7 +85,7 @@ public class Tour {
 	
 	
 
-	void insertSmallest(Point p) {
+	void insertNearest(Point p) {
 		if ( first == null) {
 			first = new Node(p);
 			first.next=first;
