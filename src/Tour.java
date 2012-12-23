@@ -15,8 +15,32 @@ public class Tour {
 		public Node(Point p) {
 			this.p = p;
 			this.next = null;
+			
 		}
 	}
+	
+	
+	public Tour()
+	{
+	}
+    public Tour (Point a, Point b, Point c, Point d) {
+    	
+    }
+void show(){
+	
+}
+void draw(){
+	
+}
+double distance(){
+	
+}
+int size(){
+	
+}
+void insertSmallest(Point p){
+	
+}
 
 	
 	/**
