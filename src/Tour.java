@@ -124,15 +124,19 @@ public class Tour {
 		Node temp = first;
 		Node best = first;
 		
-		double bestDistance = first.p.distanceTo(p) + distance();
+		double bestDistance = first.p.distanceTo(p) + first.next.p.distanceTo(p);
 		
 		int i = 1;
 		while (!(temp == first) || i == 1) {
-			double distance = temp.p.distanceTo(p) + temp.next.distanceTo(p);
+			double distance = temp.p.distanceTo(p) + temp.next.p.distanceTo(p);
+			
+			
 			if (distance < bestDistance) {
 				bestDistance = distance;
 				best = temp;
 			}
+			
+			
 			i++;
 			temp = temp.next;
 		}
