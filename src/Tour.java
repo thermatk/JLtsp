@@ -94,47 +94,42 @@ public class Tour {
 	}
 
 	public int size() {
-		/*
-		Node temp = first;
-		int i = 1;
-		// TODO size-1
-		while (!(temp == first) || i == 1) {
-			i++;
-			temp = temp.next;
-
-		}
-		return i;
-		*/
 		return currentSize;
+	}
+	
+	private void insertFirst(Point p) {
+		if (first == null) {
+			first = new Node(p);
+			first.next = first;
+		}
+	}
+	
+	private void insertAfter(Node where, Point what) {
+		Node insert = new Node(what);
+		insert.next = where.next;
+		where.next = insert;
 	}
 
 	public void insertNearest(Point p) {
 		// anyway
 		currentSize++;
 		
-		if (first == null) {
-			first = new Node(p);
-			first.next = first;
-			return;
-		}
-		Node temp = first;
-		Node best = first;
+		insertFirst(p);		
 		
+		Node best = first;
 		double bestDistance = first.p.distanceTo(p);
 		
-		int i = 1;
-		while (!(temp == first) || i == 1) {
-			double distance = temp.p.distanceTo(p);
+		AlternateIterator alterIter = new AlternateIterator();
+		while (alterIter.hasNext()) {
+			Node current = alterIter.getNode();
+			double distance = current.p.distanceTo(p);
 			if (distance < bestDistance) {
 				bestDistance = distance;
-				best = temp;
-			}
-			i++;
-			temp = temp.next;
+				best = current;
+			}		
 		}
-		Node insert = new Node(p);
-		insert.next = best.next;
-		best.next = insert;
+		
+		insertAfter(best, p);
 	}
 
 	public void insertSmallest(Point p) {
@@ -142,19 +137,7 @@ public class Tour {
 		// anyway
 		currentSize++;
 		
-		// TODO insert between, insert first in smallest and nearest
-		if (first == null) {
-			first = new Node(p);
-			first.next = first;
-			return;
-		}
-		
-		if (first.next == first) {
-			first.next = new Node(p);
-			first.next.next = first;
-			return;
-		}
-		
+		insertFirst(p);
 		
 		Node temp = first;
 		Node best = first;
@@ -177,9 +160,7 @@ public class Tour {
 		}
 		
 		
-		Node insert = new Node(p);
-		insert.next = best.next;
-		best.next = insert;
+		insertAfter(best, p);
 	}
 
 	/**
