@@ -98,10 +98,8 @@ public class Tour {
 	}
 	
 	private void insertFirst(Point p) {
-		if (first == null) {
-			first = new Node(p);
-			first.next = first;
-		}
+		first = new Node(p);
+		first.next = first;
 	}
 	
 	private void insertAfter(Node where, Point what) {
@@ -114,7 +112,11 @@ public class Tour {
 		// anyway
 		currentSize++;
 		
-		insertFirst(p);		
+		if (first == null) {
+			insertFirst(p);
+			return;
+		}
+			
 		
 		Node best = first;
 		double bestDistance = first.p.distanceTo(p);
@@ -137,7 +139,10 @@ public class Tour {
 		// anyway
 		currentSize++;
 		
-		insertFirst(p);
+		if (first == null) {
+			insertFirst(p);
+			return;
+		}
 		
 		Node temp = first;
 		Node best = first;
