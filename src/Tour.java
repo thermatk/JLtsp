@@ -10,6 +10,8 @@
 public class Tour {
 
 	private Node first;
+	
+	private int currentSize;
 
 	private class Node {
 		private Point p;
@@ -21,17 +23,52 @@ public class Tour {
 
 		}
 	}
+	
+	private class AlternateIterator {
+		private Node current;
+		private int counter; 
+		private boolean isFirstRun;
+		
+		
+		public AlternateIterator() {
+			current = first;
+			isFirstRun = true;
+			counter = 1;
+		}
+		
+		public boolean hasNext() {
+			if (isFirstRun) {
+				isFirstRun = false;
+				return true;
+			}
+			
+			if (current == first) {
+				return false;
+			}
+			
+			return true;
+		}
+		
+		public int getCounter() {
+			return counter++;
+		}
+		
+		public Node getNode() {
+			Node result = current;
+			current = current.next;
+			return result;
+		}
+	}
 
 	public Tour() {
 		first = null;
-
+		currentSize = 0;
 	}
-
-	public Tour(Point a, Point b, Point c, Point d) {
-
-	}
-
+	
+	
+	
 	void show() {
+		/*
 		Node temp = first;
 		int i = 1;
 		while (!(temp == first) || i == 1) {
@@ -40,6 +77,11 @@ public class Tour {
 			i++;
 			temp = temp.next;
 
+		}
+		*/
+		AlternateIterator alterIter = new AlternateIterator();
+		while (alterIter.hasNext()) {
+			StdOut.println("Point " + alterIter.getCounter() + " " + alterIter.getNode().p);
 		}
 
 	}
@@ -73,6 +115,7 @@ public class Tour {
 	}
 
 	int size() {
+		/*
 		Node temp = first;
 		int i = 1;
 		// TODO size-1
@@ -82,9 +125,14 @@ public class Tour {
 
 		}
 		return i;
+		*/
+		return currentSize;
 	}
 
 	void insertNearest(Point p) {
+		// anyway
+		currentSize++;
+		
 		if (first == null) {
 			first = new Node(p);
 			first.next = first;
@@ -111,10 +159,20 @@ public class Tour {
 	}
 
 	void insertSmallest(Point p) {
+		
+		// anyway
+		currentSize++;
+		
 		// TODO insert between, insert first in smallest and nearest
 		if (first == null) {
 			first = new Node(p);
 			first.next = first;
+			return;
+		}
+		
+		if (first.next == first) {
+			first.next = new Node(p);
+			first.next.next = first;
 			return;
 		}
 		
