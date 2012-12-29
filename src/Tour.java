@@ -108,6 +108,7 @@ public class Tour {
 	}
 
 	double distance() {
+		/*
 		Node temp = first;
 		int i = 1;
 		int distance = 0;
@@ -116,6 +117,13 @@ public class Tour {
 			i++;
 			temp = temp.next;
 
+		}
+		*/
+		AlternateIterator alterIter = new AlternateIterator();
+		double distance = 0;
+		while (alterIter.hasNext()) {
+			Node current = alterIter.getNode();
+			distance += current.p.distanceTo(current.next.p);			
 		}
 		return distance;
 	}
@@ -213,8 +221,7 @@ public class Tour {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 }
