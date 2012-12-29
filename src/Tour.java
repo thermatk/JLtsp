@@ -67,38 +67,14 @@ public class Tour {
 	
 	
 	
-	void show() {
-		/*
-		Node temp = first;
-		int i = 1;
-		while (!(temp == first) || i == 1) {
-			// TODO iterator
-			StdOut.println("Point " + i + temp.p);
-			i++;
-			temp = temp.next;
-
-		}
-		*/
+	public void show() {
 		AlternateIterator alterIter = new AlternateIterator();
 		while (alterIter.hasNext()) {
 			StdOut.println("Point " + alterIter.getCounter() + " " + alterIter.getNode().p);
 		}
 	}
 
-	void draw() {
-		// StdDraw.setXscale(0, 600);
-		// StdDraw.setYscale(0, 600);
-		/*
-		Node temp = first;
-		int i = 1;
-		while (!(temp == first) || i == 1) {
-			temp.p.draw();
-			temp.p.drawTo(temp.next.p);
-			i++;
-			temp = temp.next;
-
-		}
-		*/
+	public void draw() {
 		AlternateIterator alterIter = new AlternateIterator();
 		while (alterIter.hasNext()) {
 			Node current = alterIter.getNode();
@@ -107,18 +83,7 @@ public class Tour {
 		}
 	}
 
-	double distance() {
-		/*
-		Node temp = first;
-		int i = 1;
-		int distance = 0;
-		while (!(temp == first) || i == 1) {
-			distance += temp.p.distanceTo(temp.next.p);
-			i++;
-			temp = temp.next;
-
-		}
-		*/
+	public double distance() {
 		AlternateIterator alterIter = new AlternateIterator();
 		double distance = 0;
 		while (alterIter.hasNext()) {
@@ -128,7 +93,7 @@ public class Tour {
 		return distance;
 	}
 
-	int size() {
+	public int size() {
 		/*
 		Node temp = first;
 		int i = 1;
@@ -143,7 +108,7 @@ public class Tour {
 		return currentSize;
 	}
 
-	void insertNearest(Point p) {
+	public void insertNearest(Point p) {
 		// anyway
 		currentSize++;
 		
@@ -172,7 +137,7 @@ public class Tour {
 		best.next = insert;
 	}
 
-	void insertSmallest(Point p) {
+	public void insertSmallest(Point p) {
 		
 		// anyway
 		currentSize++;
