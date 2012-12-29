@@ -115,8 +115,7 @@ public class Tour {
 		if (first == null) {
 			insertFirst(p);
 			return;
-		}
-			
+		}			
 		
 		Node best = first;
 		double bestDistance = first.p.distanceTo(p);
@@ -125,6 +124,7 @@ public class Tour {
 		while (alterIter.hasNext()) {
 			Node current = alterIter.getNode();
 			double distance = current.p.distanceTo(p);
+			
 			if (distance < bestDistance) {
 				bestDistance = distance;
 				best = current;
@@ -145,12 +145,12 @@ public class Tour {
 		}
 
 		Node best = first;
-		double bestDistance = first.p.distanceTo(p) + first.next.p.distanceTo(p);
+		double bestDistance = first.p.distanceTo(p) + first.next.p.distanceTo(p) - first.p.distanceTo(first.next.p);
 		
 		AlternateIterator alterIter = new AlternateIterator();
 		while (alterIter.hasNext()) {
 			Node current = alterIter.getNode();
-			double distance = current.p.distanceTo(p) + current.next.p.distanceTo(p);
+			double distance = current.p.distanceTo(p) + current.next.p.distanceTo(p) - current.p.distanceTo(current.next.p);
 			
 			if (distance < bestDistance) {
 				bestDistance = distance;
@@ -165,7 +165,7 @@ public class Tour {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+
 	}
 
 }
