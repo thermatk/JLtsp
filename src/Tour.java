@@ -34,26 +34,26 @@ public class Tour {
 	void show() {
 		Node temp = first;
 		int i = 1;
-		while (!(temp == first) || i==1) {
+		while (!(temp == first) || i == 1) {
 			// TODO ������� ������
 			StdOut.println("Point " + i + temp.p);
 			i++;
-			temp=temp.next;
+			temp = temp.next;
 
 		}
 
 	}
 
 	void draw() {
-	//	StdDraw.setXscale(0, 600);
-	  //    StdDraw.setYscale(0, 600);
+		// StdDraw.setXscale(0, 600);
+		// StdDraw.setYscale(0, 600);
 		Node temp = first;
 		int i = 1;
-		while (!(temp == first) || i==1) {
+		while (!(temp == first) || i == 1) {
 			temp.p.draw();
 			temp.p.drawTo(temp.next.p);
 			i++;
-			temp=temp.next;
+			temp = temp.next;
 
 		}
 
@@ -63,10 +63,10 @@ public class Tour {
 		Node temp = first;
 		int i = 1;
 		int distance = 0;
-		while (!(temp == first) || i==1) {
+		while (!(temp == first) || i == 1) {
 			distance += temp.p.distanceTo(temp.next.p);
 			i++;
-			temp=temp.next;
+			temp = temp.next;
 
 		}
 		return distance;
@@ -76,36 +76,71 @@ public class Tour {
 		Node temp = first;
 		int i = 1;
 		// TODO size-1
-		while (!(temp == first) || i==1) {
+		while (!(temp == first) || i == 1) {
 			i++;
-			temp=temp.next;
-			
+			temp = temp.next;
+
 		}
 		return i;
 	}
-	
-	
 
 	void insertNearest(Point p) {
-		if ( first == null) {
+		if (first == null) {
 			first = new Node(p);
-			first.next=first;
+			first.next = first;
 			return;
 		}
 		Node temp = first;
 		Node best = first;
 		double bestDistance = first.p.distanceTo(p);
 		int i = 1;
-		while (!(temp == first) || i==1) {
+		while (!(temp == first) || i == 1) {
 			double distance = temp.p.distanceTo(p);
 			if (distance < bestDistance) {
 				bestDistance = distance;
 				best = temp;
 			}
 			i++;
-			temp=temp.next;
+			temp = temp.next;
 		}
-		Node insert = new Node (p);
+		Node insert = new Node(p);
+		insert.next = best.next;
+		best.next = insert;
+	}
+
+	void insertSmallest(point p, point b) {
+	/*
+	 * Ничем не отличается от другой, но теперь расстояние - это расстояние от p
+	 * до temp.p и temp.next.p, потому что мы хотим получить наименьшее
+	 * увеличение пути. А путь увеличится на эту сумму расстояний. Еще
+	 * отличается тем, что теперь если пусто, то сразу создается первая и вторая
+	 * точка (следующая по вооду) Это не противоречит эвристике - мы должны
+	 * добавить точку после такой, что рост пути будет минимален. Для 2-ой точки
+	 * у нас только один выбор - первая точка.
+	 */
+
+		if (first == null) {
+			first = new Node(p);
+			Node second = new Node(b);// Или другим способом добавить вторую
+										// точку.
+			first.next = second;
+			second.next = first;
+			return;
+		}
+		Node temp = first;
+		Node best = first;
+		double bestDistance = first.p.distanceTo(p) + second.p.distanceTo(p);
+		int i = 1;
+		while (!(temp == first) || i == 1) {
+			double distance = temp.p.distanceTo(p) + temp.next.distanceTo(p);
+			if (distance < bestDistance) {
+				bestDistance = distance;
+				best = temp;
+			}
+			i++;
+			temp = temp.next;
+		}
+		Node insert = new Node(p);
 		insert.next = best.next;
 		best.next = insert;
 	}
