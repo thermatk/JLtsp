@@ -83,12 +83,12 @@ public class Tour {
 		while (alterIter.hasNext()) {
 			StdOut.println("Point " + alterIter.getCounter() + " " + alterIter.getNode().p);
 		}
-
 	}
 
 	void draw() {
 		// StdDraw.setXscale(0, 600);
 		// StdDraw.setYscale(0, 600);
+		/*
 		Node temp = first;
 		int i = 1;
 		while (!(temp == first) || i == 1) {
@@ -98,7 +98,13 @@ public class Tour {
 			temp = temp.next;
 
 		}
-
+		*/
+		AlternateIterator alterIter = new AlternateIterator();
+		while (alterIter.hasNext()) {
+			Node current = alterIter.getNode();
+			current.p.draw();
+			current.p.drawTo(current.next.p);			
+		}
 	}
 
 	double distance() {
