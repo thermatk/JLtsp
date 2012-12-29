@@ -1,5 +1,3 @@
-import java.util.Iterator;
-
 /**
  * 
  */
@@ -123,7 +121,7 @@ public class Tour {
 		
 		Node temp = first;
 		Node best = first;
-		
+		// We do need only the delta
 		double bestDistance = first.p.distanceTo(p) + first.next.p.distanceTo(p);
 		
 		int i = 1;
