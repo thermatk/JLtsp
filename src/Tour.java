@@ -143,27 +143,20 @@ public class Tour {
 			insertFirst(p);
 			return;
 		}
-		
-		Node temp = first;
+
 		Node best = first;
-		// We do need only the delta
 		double bestDistance = first.p.distanceTo(p) + first.next.p.distanceTo(p);
 		
-		int i = 1;
-		while (!(temp == first) || i == 1) {
-			double distance = temp.p.distanceTo(p) + temp.next.p.distanceTo(p);
-			
+		AlternateIterator alterIter = new AlternateIterator();
+		while (alterIter.hasNext()) {
+			Node current = alterIter.getNode();
+			double distance = current.p.distanceTo(p) + current.next.p.distanceTo(p);
 			
 			if (distance < bestDistance) {
 				bestDistance = distance;
-				best = temp;
-			}
-			
-			
-			i++;
-			temp = temp.next;
+				best = current;
+			}		
 		}
-		
 		
 		insertAfter(best, p);
 	}
