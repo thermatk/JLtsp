@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 /**
  * 
  */
@@ -35,7 +37,7 @@ public class Tour {
 		Node temp = first;
 		int i = 1;
 		while (!(temp == first) || i == 1) {
-			// TODO ������� ������
+			// TODO iterator
 			StdOut.println("Point " + i + temp.p);
 			i++;
 			temp = temp.next;
@@ -108,17 +110,7 @@ public class Tour {
 		best.next = insert;
 	}
 
-	void insertSmallest(Point p, Point b) {
-	/*
-	 * Ничем не отличается от другой, но теперь расстояние - это расстояние от p
-	 * до temp.p и temp.next.p, потому что мы хотим получить наименьшее
-	 * увеличение пути. А путь увеличится на эту сумму расстояний. Еще
-	 * отличается тем, что теперь если пусто, то сразу создается первая и вторая
-	 * точка (следующая по вооду) Это не противоречит эвристике - мы должны
-	 * добавить точку после такой, что рост пути будет минимален. Для 2-ой точки
-	 * у нас только один выбор - первая точка.
-	 */
-
+	void insertSmallest(Point p) {
 		if (first == null) {
 			first = new Node(p);
 			Node second = new Node(b);// Или другим способом добавить вторую
@@ -152,4 +144,5 @@ public class Tour {
 		// TODO Auto-generated method stub
 
 	}
+
 }
