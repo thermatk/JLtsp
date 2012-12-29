@@ -111,17 +111,17 @@ public class Tour {
 	}
 
 	void insertSmallest(Point p) {
+		// TODO insert between, insert first in smallest and nearest
 		if (first == null) {
 			first = new Node(p);
-			Node second = new Node(b);// Или другим способом добавить вторую
-										// точку.
-			first.next = second;
-			second.next = first;
+			first.next = first;
 			return;
 		}
+		
+		
 		Node temp = first;
 		Node best = first;
-		double bestDistance = first.p.distanceTo(p) + second.p.distanceTo(p);
+		double bestDistance = first.p.distanceTo(p) + distance();
 		int i = 1;
 		while (!(temp == first) || i == 1) {
 			double distance = temp.p.distanceTo(p) + temp.next.distanceTo(p);
@@ -132,6 +132,8 @@ public class Tour {
 			i++;
 			temp = temp.next;
 		}
+		
+		
 		Node insert = new Node(p);
 		insert.next = best.next;
 		best.next = insert;
