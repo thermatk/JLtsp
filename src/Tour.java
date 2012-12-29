@@ -108,7 +108,7 @@ public class Tour {
 		best.next = insert;
 	}
 
-	void insertSmallest(point p, point b) {
+	void insertSmallest(Point p, Point b) {
 	/*
 	 * Ничем не отличается от другой, но теперь расстояние - это расстояние от p
 	 * до temp.p и temp.next.p, потому что мы хотим получить наименьшее
