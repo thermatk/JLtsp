@@ -25,18 +25,38 @@
 /**
  * @author thermatk
  * @author remkvadriga
- * 
+ * Собственно класс Tour - тип данных, хранящий путь коммивояжёра
  */
 public class Tour {
-
+	/**
+	 * Указывает на начало пути
+	 */
 	private Node first;
-
+	
+	/**
+	 * Текущая длина пути в точках
+	 */
 	private int currentSize;
 
+	/**
+	 * Класс - связанный список из точек пути
+	 *
+	 */
 	private class Node {
+		/**
+		 * Собственно, координаты точки
+		 */
 		private Point p;
+		/**
+		 * Ссылка на следующую точку
+		 */
 		private Node next;
 
+		/**
+		 * Конструктор
+		 * @param p
+		 * точка
+		 */
 		public Node(Point p) {
 			this.p = p;
 			this.next = null;
@@ -44,17 +64,36 @@ public class Tour {
 		}
 	}
 
+	/**
+	 * 
+	 *
+	 */
 	private class AlternateIterator {
+		/**
+		 * 
+		 */
 		private Node current;
+		/**
+		 * 
+		 */
 		private int counter;
+		/**
+		 * 
+		 */
 		private boolean isFirstRun;
 
+		/**
+		 * 
+		 */
 		public AlternateIterator() {
 			current = first;
 			isFirstRun = true;
 			counter = 1;
 		}
 
+		/**
+		 * @return
+		 */
 		public boolean hasNext() {
 			if (isFirstRun) {
 				isFirstRun = false;
@@ -68,10 +107,16 @@ public class Tour {
 			return true;
 		}
 
+		/**
+		 * @return
+		 */
 		public int getCounter() {
 			return counter++;
 		}
 
+		/**
+		 * @return
+		 */
 		public Node getNode() {
 			Node result = current;
 			current = current.next;
@@ -79,11 +124,17 @@ public class Tour {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public Tour() {
 		first = null;
 		currentSize = 0;
 	}
 
+	/**
+	 * 
+	 */
 	public void show() {
 		AlternateIterator alterIter = new AlternateIterator();
 		while (alterIter.hasNext()) {
@@ -92,6 +143,9 @@ public class Tour {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void draw() {
 		AlternateIterator alterIter = new AlternateIterator();
 		while (alterIter.hasNext()) {
@@ -101,6 +155,9 @@ public class Tour {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	public double distance() {
 		AlternateIterator alterIter = new AlternateIterator();
 		double distance = 0;
@@ -111,21 +168,34 @@ public class Tour {
 		return distance;
 	}
 
+	/**
+	 * @return
+	 */
 	public int size() {
 		return currentSize;
 	}
 
+	/**
+	 * @param p
+	 */
 	private void insertFirst(Point p) {
 		first = new Node(p);
 		first.next = first;
 	}
 
+	/**
+	 * @param where
+	 * @param what
+	 */
 	private void insertAfter(Node where, Point what) {
 		Node insert = new Node(what);
 		insert.next = where.next;
 		where.next = insert;
 	}
 
+	/**
+	 * @param p
+	 */
 	public void insertNearest(Point p) {
 		currentSize++;
 
@@ -151,6 +221,9 @@ public class Tour {
 		insertAfter(best, p);
 	}
 
+	/**
+	 * @param p
+	 */
 	public void insertSmallest(Point p) {
 		currentSize++;
 
