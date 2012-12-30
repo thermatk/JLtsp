@@ -192,6 +192,18 @@ public class Tour {
 		insert.next = where.next;
 		where.next = insert;
 	}
+	
+	/**
+	 * @param where
+	 * @param what
+	 * @return
+	 */
+	private double deltaDistance(Node where, Point what) {
+		double deltaDistance = where.p.distanceTo(what) + where.next.p.distanceTo(what)
+				- where.p.distanceTo(where.next.p);
+		
+		return deltaDistance;
+	}
 
 	/**
 	 * @param p
