@@ -37,6 +37,11 @@ public class Tour {
 	 * Текущая длина пути в точках
 	 */
 	private int currentSize;
+	
+	/**
+	 * Текущее расстояние
+	 */
+	private double currentDistance;
 
 	/**
 	 * Класс - связанный список из точек пути
@@ -130,6 +135,7 @@ public class Tour {
 	public Tour() {
 		first = null;
 		currentSize = 0;
+		currentDistance = 0.0;
 	}
 
 	/**
@@ -159,13 +165,7 @@ public class Tour {
 	 * @return
 	 */
 	public double distance() {
-		AlternateIterator alterIter = new AlternateIterator();
-		double distance = 0;
-		while (alterIter.hasNext()) {
-			Node current = alterIter.getNode();
-			distance += current.p.distanceTo(current.next.p);
-		}
-		return distance;
+		return currentDistance;
 	}
 
 	/**
@@ -178,7 +178,9 @@ public class Tour {
 	/**
 	 * @param p
 	 */
-	private void insertFirst(Point p) {
+	private void insertFirst(Point p) {		
+		currentSize++;
+		
 		first = new Node(p);
 		first.next = first;
 	}
@@ -188,6 +190,9 @@ public class Tour {
 	 * @param what
 	 */
 	private void insertAfter(Node where, Point what) {
+		currentSize++;
+		currentDistance += deltaDistance(where, what);
+	
 		Node insert = new Node(what);
 		insert.next = where.next;
 		where.next = insert;
@@ -209,8 +214,6 @@ public class Tour {
 	 * @param p
 	 */
 	public void insertNearest(Point p) {
-		currentSize++;
-
 		if (first == null) {
 			insertFirst(p);
 			return;
@@ -237,8 +240,6 @@ public class Tour {
 	 * @param p
 	 */
 	public void insertSmallest(Point p) {
-		currentSize++;
-
 		if (first == null) {
 			insertFirst(p);
 			return;
