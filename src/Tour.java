@@ -245,15 +245,12 @@ public class Tour {
 		}
 
 		Node best = first;
-		double bestDistance = first.p.distanceTo(p)
-				+ first.next.p.distanceTo(p) - first.p.distanceTo(first.next.p);
+		double bestDistance = deltaDistance(first, p);
 
 		AlternateIterator alterIter = new AlternateIterator();
 		while (alterIter.hasNext()) {
 			Node current = alterIter.getNode();
-			double distance = current.p.distanceTo(p)
-					+ current.next.p.distanceTo(p)
-					- current.p.distanceTo(current.next.p);
+			double distance = deltaDistance(current, p);
 
 			if (distance < bestDistance) {
 				bestDistance = distance;
