@@ -145,7 +145,7 @@ public class Tour {
 	}
 
 	/**
-	 * 
+	 * Выводит все точки маршрута, используя AlternateIterator
 	 */
 	public void show() {
 		AlternateIterator alterIter = new AlternateIterator();
@@ -156,7 +156,7 @@ public class Tour {
 	}
 
 	/**
-	 * 
+	 * Рисует маршрут, используя AlternateIterator
 	 */
 	public void draw() {
 		AlternateIterator alterIter = new AlternateIterator();
@@ -168,6 +168,7 @@ public class Tour {
 	}
 
 	/**
+	 * Возвращает длину пути
 	 * @return
 	 */
 	public double distance() {
@@ -175,6 +176,7 @@ public class Tour {
 	}
 
 	/**
+	 * Возвращает размер маршрута в точках
 	 * @return
 	 */
 	public int size() {
@@ -182,18 +184,23 @@ public class Tour {
 	}
 
 	/**
+	 * Добавляет первую точку в маршрут
 	 * @param p
+	 * точка-старт
 	 */
-	private void insertFirst(Point p) {		
+	private void insertFirst(Point p) {
 		currentSize++;
 		
 		first = new Node(p);
 		first.next = first;
 	}
 
-	/**
+	/** 
+	 * Добавить после
 	 * @param where
+	 * этого узла
 	 * @param what
+	 * эту точку
 	 */
 	private void insertAfter(Node where, Point what) {
 		currentSize++;
