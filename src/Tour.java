@@ -212,9 +212,13 @@ public class Tour {
 	}
 	
 	/**
+	 * Вычисляет разницу в расстояних, если 
 	 * @param where
+	 * псоле этого узла
 	 * @param what
+	 * добавить эту точку
 	 * @return
+	 * +разница
 	 */
 	private double deltaDistance(Node where, Point what) {
 		double deltaDistance = where.p.distanceTo(what) + where.next.p.distanceTo(what)
@@ -224,6 +228,7 @@ public class Tour {
 	}
 
 	/**
+	 * Реализация эвристики ближайшего соседа
 	 * @param p
 	 */
 	public void insertNearest(Point p) {
@@ -250,6 +255,7 @@ public class Tour {
 	}
 
 	/**
+	 * Реализация эвристики наименьшего увеличения
 	 * @param p
 	 */
 	public void insertSmallest(Point p) {
