@@ -212,7 +212,7 @@ public class Tour {
 	}
 	
 	/**
-	 * Вычисляет разницу в расстояних, если 
+	 * Вычисляет разницу в расстояниях, если 
 	 * @param where
 	 * псоле этого узла
 	 * @param what
@@ -232,25 +232,31 @@ public class Tour {
 	 * @param p
 	 */
 	public void insertNearest(Point p) {
+		// если первая точка, просто добавить 
 		if (first == null) {
 			insertFirst(p);
 			return;
 		}
-
+		
+		// разыгрываем после какой лучше всего добавить, первая будет победителем по умолчанию
 		Node best = first;
 		double bestDistance = first.p.distanceTo(p);
-
+		
+		// пройти по всем
 		AlternateIterator alterIter = new AlternateIterator();
 		while (alterIter.hasNext()) {
 			Node current = alterIter.getNode();
+			// собственно эвристика - найти расстояние от текущей точки в цикле до данной
 			double distance = current.p.distanceTo(p);
-
+			
+			// если нашлась лучше текущего победителя - она победитель
 			if (distance < bestDistance) {
 				bestDistance = distance;
 				best = current;
 			}
 		}
-
+		
+		// добавить после лучшей
 		insertAfter(best, p);
 	}
 
@@ -259,29 +265,36 @@ public class Tour {
 	 * @param p
 	 */
 	public void insertSmallest(Point p) {
+		// если первая точка, просто добавить 
 		if (first == null) {
 			insertFirst(p);
 			return;
 		}
-
+		
+		// разыгрываем после какой лучше всего добавить, первая будет победителем по умолчанию
 		Node best = first;
 		double bestDistance = deltaDistance(first, p);
-
+		
+		// пройти по всем
 		AlternateIterator alterIter = new AlternateIterator();
 		while (alterIter.hasNext()) {
 			Node current = alterIter.getNode();
+			// собственно эвристика - найти разницу расстояний, если добавить данную точку после текущей в цикле
 			double distance = deltaDistance(current, p);
-
+			
+			// если нашлась лучше текущего победителя - она победитель
 			if (distance < bestDistance) {
 				bestDistance = distance;
 				best = current;
 			}
 		}
-
+		
+		// добавить после лучшей
 		insertAfter(best, p);
 	}
 
 	/**
+	 * Тестировать нечего, лучше сразу пользоваться клиентами /.
 	 * @param args
 	 */
 	public static void main(String[] args) {
