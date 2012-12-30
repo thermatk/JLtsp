@@ -70,25 +70,26 @@ public class Tour {
 	}
 
 	/**
-	 * 
-	 *
+	 * Реализовывать обычный Iterable сложнее, чем придумать свой :)
+	 * Работает по принципу - при каждом вызове указатель возвращает текущий объект и сразу переключается на следующий.
+	 * То же с счётчиком
 	 */
 	private class AlternateIterator {
 		/**
-		 * 
+		 * Куда сейчас указывает итератор
 		 */
 		private Node current;
 		/**
-		 * 
+		 * Номер, может иметь разные смыслы по использованию
 		 */
 		private int counter;
 		/**
-		 * 
+		 * Это первый запуск?
 		 */
 		private boolean isFirstRun;
 
 		/**
-		 * 
+		 * Конструктор
 		 */
 		public AlternateIterator() {
 			current = first;
@@ -97,22 +98,26 @@ public class Tour {
 		}
 
 		/**
+		 * Есть ли следующий элемент?
 		 * @return
+		 * да или нет
 		 */
 		public boolean hasNext() {
+			// если первый запуск, то есть. Верно только если точек больше 1
 			if (isFirstRun) {
 				isFirstRun = false;
 				return true;
 			}
-
+			// если не первый запуск, а указывает на first - значит конец
 			if (current == first) {
 				return false;
 			}
-
+			
 			return true;
 		}
 
 		/**
+		 * Получить номер и увеличить его для следующего вызова
 		 * @return
 		 */
 		public int getCounter() {
@@ -120,6 +125,7 @@ public class Tour {
 		}
 
 		/**
+		 * Получить текущее положение и сдвинуть его для следующего вызова
 		 * @return
 		 */
 		public Node getNode() {
@@ -130,7 +136,7 @@ public class Tour {
 	}
 
 	/**
-	 * 
+	 * Конструктор
 	 */
 	public Tour() {
 		first = null;
